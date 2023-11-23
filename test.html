@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Simple Map</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+
+<body>
+
+	<div class="container">
+		<h2 class="mt-5">Geolocation PoC</h2>
+		<p>Click the button to check your location on Google Maps.</p>
+
+		<p id="demo"></p>
+		<p id="visitorIdLabel"></p>
+		<a id="btnMaps" class="btn btn-primary" target="_blank">Go To Maps</a>
+
+		<script>
+			const x = document.getElementById("demo");
+			function getLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(p => {
+						goToMaps(p.coords.latitude, p.coords.longitude);
+						showPosition(p);
+					});
+				} else {
+					x.innerHTML = "Geolocation is not supported by this browser.";
+				}
+			}
+
+			function showPosition(position) {
+				x.innerHTML = "Latitude: " + position.coords.latitude +
+					"<br>Longitude: " + position.coords.longitude;
+			}
+
+			function goToMaps(lat, lon) {
+				const url = `http://maps.google.com/maps?q=${lat},${lon}`;
+				const btn = document.getElementById("btnMaps");
+				btn.href = url;
+			}
+
+
+			getLocation();
+		</script>
+
+</body>
+
+</html>

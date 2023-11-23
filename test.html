@@ -64,8 +64,41 @@
 				btn.href = url;
 			}
 
+			function generarLoremIpsum(parrafos, palabrasPorParrafo) {
+			  const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
+			  let resultado = "";
+
+			  for (let i = 0; i < parrafos; i++) {
+				for (let j = 0; j < palabrasPorParrafo; j++) {
+				  const palabras = loremIpsum.split(" ");
+				  const indice = Math.floor(Math.random() * palabras.length);
+				  resultado += palabras[indice] + " ";
+				}
+				resultado += "\n\n";
+			  }
+
+			  return resultado.trim();
+			}
+
+			// Ejemplo de uso:
+			const loremIpsumGenerado = generarLoremIpsum(3, 50);
+			console.log(loremIpsumGenerado);
+			
+			
+			function generarLoremIpsum2(parrafos, palabrasPorParrafo) {
+			  const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
+			  return Array.from({ length: parrafos }, () =>
+				Array.from({ length: palabrasPorParrafo }, () =>
+				  loremIpsum.split(' ')[Math.floor(Math.random() * loremIpsum.split(' ').length)]
+				).join(' ')
+			  ).join('\n\n');
+			}
 
 			getLocation();
+			
+			
 		</script>
 
 </body>
